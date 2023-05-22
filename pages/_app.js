@@ -1,5 +1,16 @@
-import '@/styles/globals.css'
+import "../styles/globals.css";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import { useState } from "react";
+import AppContext from "../components/context/AppContext";
+
+function MyApp({ Component, pageProps }) {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <AppContext.Provider value={{ loading, setLoading }}>
+      <Component {...pageProps} />
+    </AppContext.Provider>
+  );
 }
+
+export default MyApp;
